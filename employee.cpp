@@ -5,6 +5,12 @@ using namespace std;
 #include "employee.h"
 #include "date.h"
 
+int Employee::count = 0; //static int init
+
+int Employee::getCount(){
+    return count;
+}
+
 Employee::Employee(const char * const first, const char * const last,
                    const Date &dateOfBirth, const Date &dateOfHire)
         : birthDate(dateOfBirth), hireDate(dateOfHire) //init
@@ -19,6 +25,8 @@ Employee::Employee(const char * const first, const char * const last,
     strncpy(lastName, last, length);
     lastName[length] = '\0';
 
+    count++;
+
     cout << "Employee object constructor: " << firstName << ' ' << lastName << endl;
 }
 
@@ -32,4 +40,5 @@ void Employee::print() const {
 
 Employee::~Employee(){
     cout << "Employee object destructor: " << lastName << ", " << firstName << endl;
+    count--;
 }
